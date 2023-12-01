@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "237153976311",
+    "project_id": "babycam-d4956",
+    "storage_bucket": "babycam-d4956.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:237153976311:android:45cdda6a94831953ccf8f2",
+        "android_client_info": {
+          "package_name": "com.example.baby_cam"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAT6s_0-mfkKbCSfLm-_SGsMq1i5P1Nxpw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
