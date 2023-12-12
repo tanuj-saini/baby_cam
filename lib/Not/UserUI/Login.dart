@@ -1,34 +1,34 @@
-import 'package:baby_cam/HomeScreen/HomeScreen.dart';
 import 'package:baby_cam/UserContoller/userContoller.dart';
-import 'package:baby_cam/UserUI/Login.dart';
+import 'package:baby_cam/Not/UserUI/SignUp.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SignUP extends ConsumerStatefulWidget {
-  SignUP({super.key});
+class LoginScreen extends ConsumerStatefulWidget {
+  LoginScreen({super.key});
   @override
   ConsumerState<ConsumerStatefulWidget> createState() {
-    return _SignUP();
+    return _LoginScreen();
   }
 }
 
-class _SignUP extends ConsumerState<SignUP> {
-  void signUPuser(
-      {required String name,
-      required String password,
-      required String email}) async {
+class _LoginScreen extends ConsumerState<LoginScreen> {
+  void LoginUser({required String password, required String email}) async {
     ref
         .watch(authContoller)
-        .signUP(name: name, email: email, password: password, context: context);
+        .signUP(email: email, name: '', password: password, context: context);
   }
 
   final TextEditingController emailContoller = TextEditingController();
   final TextEditingController passwordContoller = TextEditingController();
-  final TextEditingController nameContoller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+          title: Text(
+        "Login Screen",
+      )),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Center(
@@ -38,6 +38,8 @@ class _SignUP extends ConsumerState<SignUP> {
               TextFormField(
                 controller: emailContoller,
                 decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5)),
                   hintText: 'Email',
                 ),
               ),
@@ -47,19 +49,9 @@ class _SignUP extends ConsumerState<SignUP> {
               TextFormField(
                 controller: passwordContoller,
                 decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5)),
                   hintText: 'PassWord',
-                ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              TextFormField(
-                controller: nameContoller,
-                decoration: InputDecoration(
-                  hintText: 'Name',
                 ),
               ),
               SizedBox(
@@ -67,8 +59,9 @@ class _SignUP extends ConsumerState<SignUP> {
               ),
               ElevatedButton(
                   onPressed: () {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (ctx) => LoginScreen()));
+                    LoginUser(
+                        password: passwordContoller.text,
+                        email: emailContoller.text);
                   },
                   child: Text('Login')),
               SizedBox(
@@ -76,10 +69,8 @@ class _SignUP extends ConsumerState<SignUP> {
               ),
               ElevatedButton(
                   onPressed: () {
-                    signUPuser(
-                        name: nameContoller.text,
-                        password: passwordContoller.text,
-                        email: emailContoller.text);
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (ctx) => SignUP()));
                   },
                   child: Text('SignUp')),
             ],

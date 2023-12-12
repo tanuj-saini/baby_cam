@@ -43,6 +43,8 @@ dependencies:
   file_picker: ^6.1.1
   camera: ^0.10.5+5
   flutter_tflite: ^1.0.1
+  firebase_database: ^10.3.6
+  flutter_screen_recording: ^2.0.10
 
 dev_dependencies:
   flutter_test:
@@ -69,6 +71,9 @@ flutter:
   assets:
     - assets/mobilenet_v1_1.0_224.tflite
     - assets/mobilenet_v1_1.0_224.txt
+    - assets/images/cat.png
+    - assets/images/consulting.png
+    - assets/images/signUp.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

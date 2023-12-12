@@ -1,13 +1,15 @@
-import 'package:baby_cam/CameraScreen/CameraScreen.dart';
-import 'package:baby_cam/ExploreScreen/exploreScreen.dart';
-import 'package:baby_cam/More/MoreScreen.dart';
-import 'package:baby_cam/Perminum/premium.dart';
+import 'package:baby_cam/Not/CameraScreen/CameraScreen.dart';
+import 'package:baby_cam/Not/More/ExploreScreen/exploreScreen.dart';
+import 'package:baby_cam/Not/More/MoreScreen.dart';
+import 'package:baby_cam/Not/Perminum/premium.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
-  HomeScreen({super.key});
+  final String uuid;
+
+  HomeScreen({required this.uuid, super.key});
   @override
   ConsumerState<ConsumerStatefulWidget> createState() {
     return _HomeScreen();
@@ -29,33 +31,22 @@ class _HomeScreen extends ConsumerState<HomeScreen> {
 
   int _currentIndex = 0;
 
-  final List<Widget> _children = [
-    CameraSceen(),
-    ExploreScreen(),
-    Premium(),
-    MoreScreen()
-  ];
   void onTabTapped(int index) {
     setState(() {
       _currentIndex = index;
     });
   }
 
-  void onSelectModeFunction(String mode) {
-    // Perform actions based on the selected mode
-    print('Selected mode: $mode');
-
-    // You can call other functions or perform specific actions here
-    // For example:
-    // if (mode == 'Viewer') {
-    //   // Do something for Viewer mode
-    // } else if (mode == 'Camera') {
-    //   // Do something for Camera mode
-    // }
-  }
-
   @override
   Widget build(BuildContext context) {
+    final List<Widget> _children = [
+      CameraSceen(source: _selectedMode, camerUid: widget.uuid),
+      ExploreScreen(),
+      Premium(),
+      MoreScreen(
+        cameruid: widget.uuid,
+      )
+    ];
     return Scaffold(
       appBar: AppBar(
         centerTitle: false,
